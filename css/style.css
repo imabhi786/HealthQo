@@ -1,0 +1,21 @@
+button{
+	height: 50px;
+	width:200px;
+	background-color:grey;
+	color:white;
+	font-family:'Abel';
+	font-size: 20px;
+	border:none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+a{
+	text-decoration: none;
+}
+.form_container{
+	height: auto;
+	background: grey;
+	width: 250px;
+	margin: 40px 20px 10px 10px;
+	padding: 20px;
+}
