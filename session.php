@@ -10,8 +10,8 @@
    
    $user_check = $_SESSION['login_user'];
    $type = $_SESSION['type'];
-   echo $type;
-   echo $user_check;
+   // echo $type;
+   // echo $user_check;
    if($type == 'Admin')
    {
      $sql = "select hosname,hosadd,name,email,password,mobile from HosAdm where email = '$user_check' ";
