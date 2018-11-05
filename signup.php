@@ -2,53 +2,17 @@
 
 include("config.php");
 session_start();
-$hosname = $email = $name = $password = $mobile = $hosadd = "";
-function test_input($data) {
-	  $data = trim($data);
-	  $data = stripslashes($data);
-	  $data = htmlspecialchars($data);
-	  return $data;
-	}
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	$hosname = test_input($_POST["hosname"]);
-	$hosadd = test_input($_POST["hosadd"]);
-	$name = test_input($_POST["name"]);
-	$email = test_input($_POST["email"]);
-	$password = test_input($_POST["password"]);
-	$mobile = test_input($_POST["mobile"]);
-	
-	$_SESSION['type'] = 'Admin';
-	$sql = "SELECT hosadd from HosAdm where hosname = '$hosname' OR email='$email'";
-	if($result = mysqli_query($db,$sql))
+$hosname = $email = $name = $password = $mobile = $hosadd = $type = $typo = "";
+    if(isset($_GET["q1"])){
+	$hosname = $_GET["q1"];
+    }
+    if(isset($_GET["q2"]))
 	{
-		$rowcount = mysqli_num_rows($result);
-		// echo $rowcount;
-		
-		if($rowcount>=1)
-		{
-			// echo "Already Registered";
-			// header("location:signup.php");
-			echo '<script language="javascript">';
-			echo 'alert("Already Registered")';
-			echo '</script>';
-		}
-		else
-		{
-			$query = "INSERT INTO HosAdm (hosname,hosadd,name,email,password,mobile) VALUES('$hosname','$hosadd','$name','$email','$password','$mobile')";
-			if($db->query($query))
-			{
-				$_SESSION['login_user'] = $email;
-				header("location:main.php");
-			}
-			else
-			{
-				echo "Error :<br>".$db->error;
-				echo "Entry Not Added Successfully !"; 
-			}
-		}
-	}
-}
-
+	$type = $_GET['q2'];
+    }
+    if(isset($_GET["q3"])){
+    $typo = $_GET["q3"];
+    }
 ?>
 <html>	
 <head>
@@ -64,11 +28,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <center>
     <h2>Sign UP</h2>
 	<div class = "form_container">
-		<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-			<label>Hospital Name</label><br>
-			<input type="text" name="hosname" required><br>
-			<label>Hospital Address</label><br>
-			<input type="text" name="hosadd" required><br>
+		<form method="post" action="accept.php">
+			<!-- <label>Hospital Name</label><br> -->
+			<input type="hidden" name="hosname" value = "<?php echo $hosname ?>"required><br>
+			<!-- <label>Hospital Address</label><br> -->
+			<input type="hidden" name="type" value = "<?php echo $type ?>" required><br>
+			<input type="hidden" name="typo" value = "<?php echo $typo ?>" required><br>
 			<label>Name</label><br>
 			<input type="text" name="name" required><br>
 			<label>Email</label><br>

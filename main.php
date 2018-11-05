@@ -9,6 +9,9 @@
     <link href="https://fonts.googleapis.com/css?family=Abel|Quicksand" rel="stylesheet">
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
+    <script>
+    	
+    </script>
 </head>
 <body>
 	<div class="main_body">
@@ -26,6 +29,11 @@
 					<a href="logout.php">
 						<div class="menu-ele">
 							Logout
+						</div>
+					</a>
+					<a>
+						<div class="menu-ele" onclick="openmodal('Doc')">
+							Invite Doctor
 						</div>
 					</a>
 				</div>
@@ -47,7 +55,7 @@
 					   <h3>Doctor's List</h3>
 				   	</center>
 				   	<div class="page1">
-					    <div class="tab" style="float:right" onclick="openmodal('Add')">
+					    <div class="tab" id="tab" style="float:right" onclick="openmodal('Add')">
 					    	<i class = "fa fa-plus-circle" style="font-size:30px"></i>
 					    </div>
 				    </div>
@@ -74,11 +82,14 @@
 					}
 					else
 					{
+						$id="'Doc'";
+						$value="";
 						while($field = mysqli_fetch_assoc($result))
 						{
 							foreach($field as $column => $value) {
 							echo '<div class = "boxed">'.
-          					    $column . " " . $value.'</div><hr>';
+          					    $column . " " . $value.
+          					    '</div>';
  						    }
 						}
 					}
@@ -100,6 +111,24 @@
 			</form>
 		</div>
 	</div>
-</div>
+    </div>
+	<div class="modal" id="Doc">
+	<div class="modal-content" style="overflow-y: scroll">
+		<div class="close" onclick="closemodal('Doc')">&times;</div>
+		<div class="modal-header">
+			<h2>Add Doctor</h2><br>
+		</div>
+		<div class="modal-body">
+			<form method="post" action="invite.php">
+				<label for="email">Doctor email</label><br><br>
+				<input type="email" name="email" style="width:100%"><br><br>
+				<label for="type">Type</label><br><br>
+				<input type="text"  name="type" style="width:100%">
+				<input type="hidden" name="doc" value="doctor">
+				<center><input type="submit" name="Invite" value="Invite" class="button"></center><br><br>
+			</form>
+		</div>
+	</div>
+    </div>
 </body>
 </html>
