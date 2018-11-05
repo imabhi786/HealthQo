@@ -17,15 +17,15 @@ include('session.php');
     $mail->Host = "smtp.gmail.com";
     $mail->Port = 465; // or 587
     $mail->IsHTML(true); 
-    $mail->Username = 'abhijeetmathur786@gmail.com';                                       
-    $mail->Password = 'abhi@5215012';    
+    $mail->Username = 'your@gmail.com';                                       
+    $mail->Password = 'password';    
     $type = $_POST["doc"];
     // if($type=='doctor')
         $_SESSION["type"]=$type;
     // else if($type=='patient')
     //     $_SESSION["type"]='patient';
     //Recipients
-    $mail->setFrom('abhijeetmathur786@gmail.com');
+    $mail->setFrom('your@gmail.com');
     $mail->addAddress(''.$_POST["email"].'');
     // echo $_POST["email"];
     $mail->isHTML(true);                                  // Set email format to HTML
