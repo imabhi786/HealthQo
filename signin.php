@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	  if($count==1) {
 	     // session_register("myusername");
 	     $_SESSION['login_user'] = $myusername;
-	     header("location: main_doc.php");
+	     header("location: profile.php?email=".$myusername."&type=Doctor&q3=".$hosname);
 	     
 	  }else if($count==0) {
 	    echo '<script language="javascript">';
@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	  if($count==1) {
 	     // session_register("myusername");
 	     $_SESSION['login_user'] = $myusername;
-	     header("location: main_patient.php");
+	      header("location: profile.php?email=".$myusername."&type=Patient&q3=".$hosname);
 	     
 	  }else if($count==0) {
 	    echo '<script language="javascript">';

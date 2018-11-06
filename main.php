@@ -26,11 +26,6 @@
 			<div class="page">
 				<div class="tab" style="float: right" onclick="navigation()"><i class="fa fa-bars"></i></div>
 				<div class="menu" id="navmenu">
-					<a href="logout.php">
-						<div class="menu-ele">
-							Logout
-						</div>
-					</a>
 					<a>
 						<div class="menu-ele" onclick="openmodal('Doc')">
 							Invite Doctor
@@ -39,6 +34,16 @@
 					<a>
 						<div class="menu-ele" onclick="openmodal('Pat')">
 							Invite Patient
+						</div>
+					</a>
+					<a href="profile.php?email=<?php echo $_SESSION['login_user']; ?>&type=<?php echo $_SESSION['type']; ?>&q3=<?php echo $login_session_1; ?>">
+						<div class="menu-ele">
+							Profile
+						</div>
+					</a>
+					<a href="logout.php">
+						<div class="menu-ele">
+							Logout
 						</div>
 					</a>
 				</div>
@@ -93,13 +98,15 @@
 						while($field = mysqli_fetch_assoc($result))
 						{
 							foreach($field as $column => $value) {
-							echo '<div class = "boxed">'.
-          					    $column . " " . $value.
-          					    '<div class="page2">
-					    <div class="tab" id="tab" style="float:right" onclick="openmodal('.$id.')">
-					    	<i class = "fa fa-trash" style="font-size:20px"></i>
-					    </div>
-				    </div></div>';
+							echo 
+							'<div class = "boxed">
+							    <a href="type.php?name='.$login_session_1.'&type='.$value.'&category=doctor">'.$value.'</a>
+          					    <div class="page2">
+					                <div class="tab" id="tab" style="float:right" onclick="openmodal('.$id.')">
+					    	        <i class = "fa fa-trash" style="font-size:20px"></i>
+					                </div>
+				                 </div>  
+				             </div>';
  						    }
 						}
 					}
@@ -124,13 +131,15 @@
 						while($field = mysqli_fetch_assoc($result))
 						{
 							foreach($field as $column => $value) {
-							echo '<div class = "boxed">'.
-          					    $column . " " . $value.
-          					    '<div class="page2">
-					    <div class="tab" id="tab" style="float:right" onclick="openmodal('.$id.')">
-					    	<i class = "fa fa-trash" style="font-size:20px"></i>
-					    </div>
-				    </div></div>';
+							echo
+							'<div class = "boxed">
+							    <a href="type.php?name='.$login_session_1.'&type='.$value.'&category=patient">'.$value.'</a>
+          					    <div class="page2">
+					                <div class="tab" id="tab" style="float:right" onclick="openmodal('.$id.')">
+					    	        <i class = "fa fa-trash" style="font-size:20px"></i>
+					                </div>
+				                 </div>  
+				             </div>';
  						    }
 						}
 					}
