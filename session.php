@@ -18,17 +18,17 @@
    }
    else if($type == 'Doctor')
    {
-     $sql ="select hosname,hosadd,name,email,password,mobile from HosDoc where email= '$user_check' "; 
+     $sql ="select hosname,name,email,password,mobile,type from HosDoc where email= '$user_check' "; 
    }
    else if($type == 'Patient')
    {
-      $sql = "select hosname,hosadd,name,email,password,mobile from HosPat where email= '$user_check' "; 
+      $sql = "select hosname,name,email,password,mobile,type from HosPat where email= '$user_check' "; 
    }
    $result = mysqli_query($db,$sql);
    $row = mysqli_fetch_array($result);
    
    $login_session_1 = $row['hosname'];
-   $login_session_2 = $row['hosadd'];
+   $login_session_2 = $type;
    $login_session_3 = $row['name'];
    $login_session_4 = $row['mobile'];
    // $login_session_5 = $row['image'];

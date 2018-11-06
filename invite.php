@@ -17,20 +17,20 @@ include('session.php');
     $mail->Host = "smtp.gmail.com";
     $mail->Port = 465; // or 587
     $mail->IsHTML(true); 
-    $mail->Username = 'your@gmail.com';                                       
-    $mail->Password = 'password';    
+    $mail->Username = 'abc@gmail.com';                                       
+    $mail->Password = 'Password';    
     $type = $_POST["doc"];
     // if($type=='doctor')
-        $_SESSION["type"]=$type;
+        // $_SESSION["type"]=$type;
     // else if($type=='patient')
     //     $_SESSION["type"]='patient';
     //Recipients
-    $mail->setFrom('your@gmail.com');
+    $mail->setFrom('abc@gmail.com');
     $mail->addAddress(''.$_POST["email"].'');
     // echo $_POST["email"];
     $mail->isHTML(true);                                  // Set email format to HTML
     $mail->Subject = 'Invitation to '.$_POST["email"].'';
-    $mail->Body    = 'http://localhost/HealthQo/signup.php?q1='. $login_session_1.'&q2='.$_POST["type"].'&q3='. $_SESSION["type"].'';
+    $mail->Body    = 'http://localhost/HealthQo/signup.php?q1='. $login_session_1.'&q2='.$_POST["type"].'&q3='. $type.'';
     // echo $mail->Body;
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 

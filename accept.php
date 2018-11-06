@@ -1,10 +1,11 @@
 <?php
 
-include("config.php");
-session_start();
-$hosname = $email = $name = $password = $mobile = $hosadd = $type = $typo = "";
+	include("config.php");
+	session_start();
+	$hosname = $email = $name = $password = $mobile = $hosadd = $type = $typo = "";
    
-function test_input($data) {
+    function test_input($data)
+    {
 	  $data = trim($data);
 	  $data = stripslashes($data);
 	  $data = htmlspecialchars($data);
@@ -22,7 +23,7 @@ function test_input($data) {
 	
     
 	if($typo == 'doctor'){
-	$sql = "SELECT * from HosDoc where hosname = '$hosname' OR email='$email'";
+	$sql = "SELECT * from HosDoc where email='$email'";
 	if($result = mysqli_query($db,$sql))
 	{
 		$rowcount = mysqli_num_rows($result);
@@ -54,7 +55,7 @@ function test_input($data) {
     }
     else if($typo== 'patient')
     {
-    	$sql = "SELECT * from HosPat where hosname = '$hosname' OR email='$email'";
+    	$sql = "SELECT * from HosPat where email='$email'";
 		if($result = mysqli_query($db,$sql))
 		{
 			$rowcount = mysqli_num_rows($result);

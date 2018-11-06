@@ -29,11 +29,11 @@ $hosname = $email = $name = $password = $mobile = $hosadd = $type = $typo = "";
     <h2>Sign UP</h2>
 	<div class = "form_container">
 		<form method="post" action="accept.php">
-			<!-- <label>Hospital Name</label><br> -->
-			<input type="hidden" name="hosname" value = "<?php echo $hosname ?>"required><br>
-			<!-- <label>Hospital Address</label><br> -->
 			<input type="hidden" name="type" value = "<?php echo $type ?>" required><br>
 			<input type="hidden" name="typo" value = "<?php echo $typo ?>" required><br>
+			<label>Hospital Name</label><br>
+			<input type="text" name="hosname" value = "<?php echo $hosname ?>" required readonly><br>
+			<!-- <label>Hospital Address</label><br> -->
 			<label>Name</label><br>
 			<input type="text" name="name" required><br>
 			<label>Email</label><br>

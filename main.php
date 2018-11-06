@@ -36,6 +36,11 @@
 							Invite Doctor
 						</div>
 					</a>
+					<a>
+						<div class="menu-ele" onclick="openmodal('Pat')">
+							Invite Patient
+						</div>
+					</a>
 				</div>
 		    </div>
 		</div>
@@ -52,27 +57,28 @@
 		<div class="flexed">
 			<div class="one">
 					<center>
-					   <h3>Doctor's List</h3>
+					   <h3>Doctor's Class</h3>
 				   	</center>
 				   	<div class="page1">
-					    <div class="tab" id="tab" style="float:right" onclick="openmodal('Add')">
+					    <div class="tab" id="tab" style="float:right" onclick="openmodal('Add_Doc')">
 					    	<i class = "fa fa-plus-circle" style="font-size:30px"></i>
 					    </div>
 				    </div>
 			</div>
 			<div class="two">
 				<center>
-				    <h3>Patient's List</h3>
+				    <h3>Patient's Class</h3>
 			    </center>
 			    <div class="page1">
-				    <div class="tab" style="float:right"><i class = "fa fa-plus-circle" style="font-size:30px"></i></div>
+				    <div class="tab" style="float:right" onclick="openmodal('Add_Pat')"><i class = "fa fa-plus-circle" style="font-size:30px"></i></div>
 				</div>
 			</div>
 		</div>
+		<div class = "flexed">
 		<div class="one">
 			<?php
 				include('config.php');
-				$sql = "select type from class";
+				$sql = "select type from class_Doc";
 				if($result = mysqli_query($db,$sql))
 				{
 					$rowcount = mysqli_num_rows($result);
@@ -82,14 +88,49 @@
 					}
 					else
 					{
-						$id="'Doc'";
+						$id="'delete'";
 						$value="";
 						while($field = mysqli_fetch_assoc($result))
 						{
 							foreach($field as $column => $value) {
 							echo '<div class = "boxed">'.
           					    $column . " " . $value.
-          					    '</div>';
+          					    '<div class="page2">
+					    <div class="tab" id="tab" style="float:right" onclick="openmodal('.$id.')">
+					    	<i class = "fa fa-trash" style="font-size:20px"></i>
+					    </div>
+				    </div></div>';
+ 						    }
+						}
+					}
+				}
+			?>
+		</div>
+		<div class="two">
+			<?php
+				// 	include('config.php');
+				$sql = "select type from class_pat";
+				if($result = mysqli_query($db,$sql))
+				{
+					$rowcount = mysqli_num_rows($result);
+					if($rowcount==0)
+					{
+						echo "Nothing Added Yet!";
+					}
+					else
+					{
+						$id="'delete'";
+						$value="";
+						while($field = mysqli_fetch_assoc($result))
+						{
+							foreach($field as $column => $value) {
+							echo '<div class = "boxed">'.
+          					    $column . " " . $value.
+          					    '<div class="page2">
+					    <div class="tab" id="tab" style="float:right" onclick="openmodal('.$id.')">
+					    	<i class = "fa fa-trash" style="font-size:20px"></i>
+					    </div>
+				    </div></div>';
  						    }
 						}
 					}
@@ -97,9 +138,10 @@
 			?>
 		</div>
 	</div>
-	<div class="modal" id="Add">
+	</div>
+	<div class="modal" id="Add_Doc">
 	<div class="modal-content">
-		<div class="close" onclick="closemodal('Add')">&times;</div>
+		<div class="close" onclick="closemodal('Add_Doc')">&times;</div>
 		<div class="modal-header">
 			<h2>Add Doctor's Class</h2><br>
 		</div>
@@ -107,7 +149,22 @@
 			<form method="post" action="addclass.php">
 				<label for="classtype">Doctor's Class</label><br><br>
 				<input type="text" name="classtype" style="width:100%"><br><br>
-				<center><input type="submit" name="Add" value="Add" class="button"></center><br><br>
+				<center><input type="submit" name="Add_Doc" value="Add" class="button"></center><br><br>
+			</form>
+		</div>
+	</div>
+    </div>
+    <div class="modal" id="Add_Pat">
+	<div class="modal-content">
+		<div class="close" onclick="closemodal('Add_Pat')">&times;</div>
+		<div class="modal-header">
+			<h2>Add Patient's Class</h2><br>
+		</div>
+		<div class="modal-body">
+			<form method="post" action="addclass.php">
+				<label for="classtype">Patient's Class</label><br><br>
+				<input type="text" name="classtype" style="width:100%"><br><br>
+				<center><input type="submit" name="Add_Pat" value="Add" class="button"></center><br><br>
 			</form>
 		</div>
 	</div>
@@ -125,6 +182,24 @@
 				<label for="type">Type</label><br><br>
 				<input type="text"  name="type" style="width:100%">
 				<input type="hidden" name="doc" value="doctor">
+				<center><input type="submit" name="Invite" value="Invite" class="button"></center><br><br>
+			</form>
+		</div>
+	</div>
+    </div>
+    <div class="modal" id="Pat">
+	<div class="modal-content" style="overflow-y: scroll">
+		<div class="close" onclick="closemodal('Pat')">&times;</div>
+		<div class="modal-header">
+			<h2>Add Patient</h2><br>
+		</div>
+		<div class="modal-body">
+			<form method="post" action="invite.php">
+				<label for="email">Patient email</label><br><br>
+				<input type="email" name="email" style="width:100%"><br><br>
+				<label for="type">Type</label><br><br>
+				<input type="text"  name="type" style="width:100%">
+				<input type="hidden" name="doc" value="patient">
 				<center><input type="submit" name="Invite" value="Invite" class="button"></center><br><br>
 			</form>
 		</div>
