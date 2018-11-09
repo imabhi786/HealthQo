@@ -72,20 +72,19 @@
 		<div class="flexed">
 			<div class="one">
 					<center>
-					   <h3>Doctor's Class</h3>
+					   <h3>Doctor's List</h3>
 				   	</center>
 				   	<div class="page1">
 					    <div class="tab" id="tab" style="float:right" onclick="openmodal('Add_Doc')">
-					    	<i class = "fa fa-plus-circle" style="font-size:30px"></i>
 					    </div>
 				    </div>
 			</div>
 			<div class="two">
 				<center>
-				    <h3>Patient's Class</h3>
+				    <h3>Patient's List</h3>
 			    </center>
 			    <div class="page1">
-				    <div class="tab" style="float:right" onclick="openmodal('Add_Pat')"><i class = "fa fa-plus-circle" style="font-size:30px"></i></div>
+				    <div class="tab" style="float:right" onclick="openmodal('Add_Pat')"></div>
 				</div>
 			</div>
 		</div>
@@ -93,7 +92,7 @@
 		<div class="one">
 			<?php
 				include('config.php');
-				$sql = "select type from class_Doc";
+				$sql = "select name from hosdoc";
 				if($result = mysqli_query($db,$sql))
 				{
 					$rowcount = mysqli_num_rows($result);
@@ -110,7 +109,7 @@
 							foreach($field as $column => $value) {
 							echo 
 							'<div class = "boxed">
-							    <a href="type.php?name='.$login_session_1.'&type='.$value.'&category=doctor">'.$value.'</a>
+							    <a>'.$value.'</a>
           					    <div class="page2">
 					                <div class="tab" id="tab" style="float:right" onclick="openmodal('.$id.')">
 					    	        <i class = "fa fa-trash" style="font-size:20px"></i>
@@ -126,7 +125,7 @@
 		<div class="two">
 			<?php
 				// 	include('config.php');
-				$sql = "select type from class_pat";
+				$sql = "select name from hospat";
 				if($result = mysqli_query($db,$sql))
 				{
 					$rowcount = mysqli_num_rows($result);
@@ -143,7 +142,7 @@
 							foreach($field as $column => $value) {
 							echo
 							'<div class = "boxed">
-							    <a href="type.php?name='.$login_session_1.'&type='.$value.'&category=patient">'.$value.'</a>
+							    <a>'.$value.'</a>
           					    <div class="page2">
 					                <div class="tab" id="tab" style="float:right" onclick="openmodal('.$id.')">
 					    	        <i class = "fa fa-trash" style="font-size:20px"></i>
