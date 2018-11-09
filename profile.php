@@ -71,6 +71,8 @@ $field = mysqli_fetch_assoc($result);
                     $pattype=$value;
                     if($category=='Patient' && $column=='status')
                     $patstat=$value;
+                    if($category=='Doctor' && $column=='did')
+                    $docid=$value;
 				}
         if($category=='Patient' && $patstat=='false'){
             $sqlp="SELECT * FROM hosdoc where type = '$pattype'";
@@ -103,13 +105,28 @@ $field = mysqli_fetch_assoc($result);
 				{
 					if($column!='password')
 					echo $column." :  ".$value.'<br>';
-                    if($category=='Patient' && $column=='pid')
-                    $patid=$value;
-                    if($category=='Patient' && $column=='type')
-                    $pattype=$value;
-                    if($category=='Patient' && $column=='status')
-                    $patstat=$value;
 				}
+        } elseif($category=='Doctor'){
+            $sqld="SELECT * FROM hospat where pid IN (SELECT pid FROM appointments WHERE did=".$docid.")";
+            $resultp = mysqli_query($db,$sqld);
+            echo "<h2>Patients to visit</h2>";
+            if ($resultp->num_rows > 0) {
+                // output data of each row
+                 echo '<form method="post" action="">';
+                while($row = $resultp->fetch_assoc()) {
+                    echo '<input type="radio" name="rpat" value="'.$row["pid"].'"> ID : '.$row["pid"].' / Name : '.$row["name"].'<br>';
+                }
+                echo '<input type="submit" name="submit" value="Visited"></form>';
+            } else {
+                echo "No patients";
+            }
+            if (isset($_POST['rpat'])) {
+                echo "<meta http-equiv='refresh' content='0'>";
+            $sql1='DELETE FROM HosPat WHERE pid='.$_POST["rpat"];
+            $sql2='DELETE FROM appointments WHERE pid='.$_POST["rpat"];
+            mysqli_query($db,$sql2);
+            mysqli_query($db,$sql1);
+        }
         }
 			?>
 		</div>
