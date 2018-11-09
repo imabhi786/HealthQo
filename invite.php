@@ -1,9 +1,9 @@
-<?php 
+<?php
 use phpmailer\phpmailer\PHPMailer;
 use phpmailer\phpmailer\Exception;
-require '/phpmailer/src/Exception.php';
-require '/phpmailer/src/PHPMailer.php';
-require '/phpmailer/src/SMTP.php';
+require 'phpmailer/src/Exception.php';
+require 'phpmailer/src/PHPMailer.php';
+require 'phpmailer/src/SMTP.php';
 require 'vendor/autoload.php';
 include('session.php');
     try {
@@ -11,14 +11,14 @@ include('session.php');
     $mail = new PHPMailer();
     $mail->IsSMTP(); // enable SMTP
 
-    //$mail->SMTPDebug = 1; 
-    $mail->SMTPAuth = true; 
-    $mail->SMTPSecure = 'ssl'; 
+    //$mail->SMTPDebug = 1;
+    $mail->SMTPAuth = true;
+    $mail->SMTPSecure = 'ssl';
     $mail->Host = "smtp.gmail.com";
     $mail->Port = 465; // or 587
-    $mail->IsHTML(true); 
-    $mail->Username = 'abc@gmail.com';                                       
-    $mail->Password = 'Password';    
+    $mail->IsHTML(true);
+    $mail->Username = 'abc@gmail.com';
+    $mail->Password = 'Password';
     $type = $_POST["doc"];
     // if($type=='doctor')
         // $_SESSION["type"]=$type;
@@ -39,7 +39,7 @@ include('session.php');
     header('location:main.php');
 } catch (Exception $e) {
     echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
-}   
+}
 
 
 ?>
