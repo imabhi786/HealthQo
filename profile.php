@@ -25,7 +25,8 @@ $field = mysqli_fetch_assoc($result);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Abel|Quicksand" rel="stylesheet">
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js1/script.js"></script>
+    <link rel="stylesheet" href="css1/style.css">
 </head>
 <body>
 	<div class="header">
