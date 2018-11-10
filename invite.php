@@ -17,8 +17,8 @@ include('session.php');
     $mail->Host = "smtp.gmail.com";
     $mail->Port = 465; // or 587
     $mail->IsHTML(true);
-    $mail->Username = 'abc@gmail.com';
-    $mail->Password = 'Password';
+    $mail->Username = 'sharemate.in@gmail.com';
+    $mail->Password = 'sharematespartans';
     $type = $_POST["doc"];
     // if($type=='doctor')
         // $_SESSION["type"]=$type;
