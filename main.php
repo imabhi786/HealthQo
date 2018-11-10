@@ -38,7 +38,7 @@
   </nav>
     <div class="row" style="width:80%"><div>
 				<?php
-				echo '<h3>'.$login_session_1.' ('.$type.')</h3>';
+				echo '<h3>'.$login_session_1.' ('.$type.')/Home</h3>';
 				?>
 		    </div></div>
   <div class="row center" style="width:80%">
