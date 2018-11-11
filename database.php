@@ -1,95 +1,63 @@
 <?php
    include('session.php');
 ?>
-<html>
+<html lang="en">
 <head>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Abel|Quicksand" rel="stylesheet">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-    <script type="text/javascript" src="js/script.js"></script>
-    <script>
-    	
-    </script>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>HealthQo</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" href="css1/style.css">
+  <script src="js1/script.js"></script>
 </head>
 <body>
-	<div class="main_body">
-		<div class="header">
-			<div>
+<nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="index.html" class="brand-logo">HealthQo</a>
+      <ul class="right hide-on-med-and-down">
+       <li><a href="main.php">Home</a></li>
+        <li><a href="profile.php?email=<?php echo $_SESSION['login_user']; ?>&type=<?php echo $_SESSION['type']; ?>&q3=<?php echo $login_session_1; ?>">Profile</a></li>
+        <li class="active"><a href="database.php">Database</a></li>
+        <li><a href="appointments.php">Appointments</a></li>
+        <li><a href="logout.php">Log Out</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="sidenav">
+       <li><a href="main.php">Home</a></li>
+        <li><a href="profile.php?email=<?php echo $_SESSION['login_user']; ?>&type=<?php echo $_SESSION['type']; ?>&q3=<?php echo $login_session_1; ?>">Profile</a></li>
+        <li class="active"><a href="database.php">Database</a></li>
+        <li><a href="appointments.php">Appointments</a></li>
+        <li><a href="logout.php">Log Out</a></li>
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  <div class="row" style="width:80%"><div>
 				<?php
-				echo '<h1>'.$login_session_1.'</h1>';
+				echo '<h3>'.$login_session_1.' ('.$type.')/Database</h3>';
 				?>
-		    </div>
-		</div>
-		<div class="flexed">
-			<div class="page">
-				<div class="tab" style="float: right" onclick="navigation()"><i class="fa fa-bars"></i></div>
-				<div class="menu" id="navmenu">
-					<a>
-						<div class="menu-ele" onclick="openmodal('Doc')">
-							Invite Doctor
-						</div>
-					</a>
-					<a>
-						<div class="menu-ele" onclick="openmodal('Pat')">
-							Invite Patient
-						</div>
-					</a>
-					<a href="profile.php?email=<?php echo $_SESSION['login_user']; ?>&type=<?php echo $_SESSION['type']; ?>&q3=<?php echo $login_session_1; ?>">
-						<div class="menu-ele">
-							Profile
-						</div>
-					</a>
-					<a>
-						<a href="database.php"><div class="menu-ele" onclick="">
-							Database
-                            </div></a>
-					</a>
-					<a>
-						<a href="appointments.php"><div class="menu-ele" onclick="">
-							Appointments
-                            </div></a>
-					</a>
-					<a href="logout.php">
-						<div class="menu-ele">
-							Logout
-						</div>
-					</a>
-				</div>
-		    </div>
-		</div>
-		<div>
-			<center>
-			<?php
-				echo '<h1>'.$type.'</h1>';
-			?>
-			<hr>
-		    </center>
-		</div>
-		<div class="vl">
-		</div>
-		<div class="flexed">
-			<div class="one">
-					<center>
-					   <h3>Doctor's List</h3>
-				   	</center>
-				   	<div class="page1">
-					    <div class="tab" id="tab" style="float:right" onclick="openmodal('Add_Doc')">
-					    </div>
-				    </div>
+		    </div></div>
+	<div class="main_body">
+	<div class="row card-panel teal lighten-4">
+		<div class="row center" style="width:85%">
+			<div class="col s6 card-panel teal" style="margin-right:5%;width:45%;margin-bottom:-3px">
+					<div class="row center" style="padding-top:15px">
+					   <div class="col s6" style="font-size:30px;text-align:center">Doctor's Class</div>
+				   	</div>
 			</div>
-			<div class="two">
-				<center>
-				    <h3>Patient's List</h3>
-			    </center>
-			    <div class="page1">
-				    <div class="tab" style="float:right" onclick="openmodal('Add_Pat')"></div>
-				</div>
+			<div class="col s6 card-panel teal" style="margin-left:5%;width:45%;margin-bottom:-3px">
+				<div class="row center" style="padding-top:15px">
+                    <div class="col s6" style="font-size:30px">Patient's Class</div>
+                </div>
 			</div>
-		</div>
-		<div class = "flexed">
-		<div class="one">
+        </div>
+        
+		<div class = "row" style="width:85%;margin-top:-40px">
+		<div class="col s6 card-panel teal lighten-5" style="margin-right:5%;width:45%;padding-top:15px;padding-bottom:15px">
 			<?php
 				include('config.php');
 				$sql = "select name from hosdoc";
@@ -108,7 +76,7 @@
 						{
 							foreach($field as $column => $value) {
 							echo 
-							'<div class = "boxed">
+							'<div class = "boxed card-panel">
 							    <a>'.$value.'</a>
           					    <div class="page2">
 					                <div class="tab" id="tab" style="float:right" onclick="openmodal('.$id.')">
@@ -122,7 +90,7 @@
 				}
 			?>
 		</div>
-		<div class="two">
+		<div class="col s6 card-panel teal lighten-5" style="margin-left:5%;width:45%;padding-top:15px;padding-bottom:15px">
 			<?php
 				// 	include('config.php');
 				$sql = "select name from hospat";
@@ -141,7 +109,7 @@
 						{
 							foreach($field as $column => $value) {
 							echo
-							'<div class = "boxed">
+							'<div class = "boxed card-panel">
 							    <a>'.$value.'</a>
           					    <div class="page2">
 					                <div class="tab" id="tab" style="float:right" onclick="openmodal('.$id.')">
@@ -156,72 +124,6 @@
 			?>
 		</div>
 	</div>
-	</div>
-	<div class="modal" id="Add_Doc">
-	<div class="modal-content">
-		<div class="close" onclick="closemodal('Add_Doc')">&times;</div>
-		<div class="modal-header">
-			<h2>Add Doctor's Class</h2><br>
-		</div>
-		<div class="modal-body">
-			<form method="post" action="addclass.php">
-				<label for="classtype">Doctor's Class</label><br><br>
-				<input type="text" name="classtype" style="width:100%"><br><br>
-				<center><input type="submit" name="Add_Doc" value="Add" class="button"></center><br><br>
-			</form>
-		</div>
-	</div>
-    </div>
-    <div class="modal" id="Add_Pat">
-	<div class="modal-content">
-		<div class="close" onclick="closemodal('Add_Pat')">&times;</div>
-		<div class="modal-header">
-			<h2>Add Patient's Class</h2><br>
-		</div>
-		<div class="modal-body">
-			<form method="post" action="addclass.php">
-				<label for="classtype">Patient's Class</label><br><br>
-				<input type="text" name="classtype" style="width:100%"><br><br>
-				<center><input type="submit" name="Add_Pat" value="Add" class="button"></center><br><br>
-			</form>
-		</div>
-	</div>
-    </div>
-	<div class="modal" id="Doc">
-	<div class="modal-content" style="overflow-y: scroll">
-		<div class="close" onclick="closemodal('Doc')">&times;</div>
-		<div class="modal-header">
-			<h2>Add Doctor</h2><br>
-		</div>
-		<div class="modal-body">
-			<form method="post" action="invite.php">
-				<label for="email">Doctor email</label><br><br>
-				<input type="email" name="email" style="width:100%"><br><br>
-				<label for="type">Type</label><br><br>
-				<input type="text"  name="type" style="width:100%">
-				<input type="hidden" name="doc" value="doctor">
-				<center><input type="submit" name="Invite" value="Invite" class="button"></center><br><br>
-			</form>
-		</div>
-	</div>
-    </div>
-    <div class="modal" id="Pat">
-	<div class="modal-content" style="overflow-y: scroll">
-		<div class="close" onclick="closemodal('Pat')">&times;</div>
-		<div class="modal-header">
-			<h2>Add Patient</h2><br>
-		</div>
-		<div class="modal-body">
-			<form method="post" action="invite.php">
-				<label for="email">Patient email</label><br><br>
-				<input type="email" name="email" style="width:100%"><br><br>
-				<label for="type">Type</label><br><br>
-				<input type="text"  name="type" style="width:100%">
-				<input type="hidden" name="doc" value="patient">
-				<center><input type="submit" name="Invite" value="Invite" class="button"></center><br><br>
-			</form>
-		</div>
-	</div>
-    </div>
+        </div></div>
 </body>
 </html>
